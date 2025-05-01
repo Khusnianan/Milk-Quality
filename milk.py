@@ -39,13 +39,6 @@ if st.button("Prediksi Grade Susu"):
     prediction = interpreter.get_tensor(output_details[0]['index'])
 
     predicted_label = np.argmax(prediction)
-
-    # Debug info
-    st.write("Output Prediction (raw):", prediction)
-    st.write("Predicted Label (index):", predicted_label)
-    st.write("Label Encoder Classes:", label_encoder.classes_)
-
-    # Ubah ke nama label
     grade = label_encoder.inverse_transform([predicted_label])[0]
-    st.success(f"Grade susu yang diprediksi: **{grade.upper()}**")
 
+    st.success(f"Grade susu yang diprediksi: **{grade.upper()}**")
