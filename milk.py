@@ -40,9 +40,12 @@ if st.button("Prediksi Grade Susu"):
 
     predicted_label = np.argmax(prediction)
 
-    # Cek jika label yang diprediksi valid
-    if predicted_label >= len(label_encoder.classes_):
-        st.error("Model memprediksi label yang tidak dikenal. Mungkin model tidak sinkron dengan encoder.")
-    else:
-        grade = label_encoder.inverse_transform([predicted_label])[0]
-        st.success(f"Grade susu yang diprediksi: **{grade.upper()}**")
+    # Debug info
+    st.write("Output Prediction (raw):", prediction)
+    st.write("Predicted Label (index):", predicted_label)
+    st.write("Label Encoder Classes:", label_encoder.classes_)
+
+    # Ubah ke nama label
+    grade = label_encoder.inverse_transform([predicted_label])[0]
+    st.success(f"Grade susu yang diprediksi: **{grade.upper()}**")
+
